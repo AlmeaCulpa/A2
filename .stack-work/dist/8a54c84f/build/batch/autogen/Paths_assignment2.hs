@@ -42,12 +42,12 @@ getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: 
 
 
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
-bindir     = "E:\\System Folders\\Desktop\\2023Assignment2\\.stack-work\\install\\71ff1820\\bin"
-libdir     = "E:\\System Folders\\Desktop\\2023Assignment2\\.stack-work\\install\\71ff1820\\lib\\x86_64-windows-ghc-9.2.8\\assignment2-0.1.0.0-E1ZqkG4IEKIFvqLfR4DPsI-batch"
-dynlibdir  = "E:\\System Folders\\Desktop\\2023Assignment2\\.stack-work\\install\\71ff1820\\lib\\x86_64-windows-ghc-9.2.8"
-datadir    = "E:\\System Folders\\Desktop\\2023Assignment2\\.stack-work\\install\\71ff1820\\share\\x86_64-windows-ghc-9.2.8\\assignment2-0.1.0.0"
-libexecdir = "E:\\System Folders\\Desktop\\2023Assignment2\\.stack-work\\install\\71ff1820\\libexec\\x86_64-windows-ghc-9.2.8\\assignment2-0.1.0.0"
-sysconfdir = "E:\\System Folders\\Desktop\\2023Assignment2\\.stack-work\\install\\71ff1820\\etc"
+bindir     = "E:\\System Folders\\Documents\\GitHub\\FA2\\.stack-work\\install\\71ff1820\\bin"
+libdir     = "E:\\System Folders\\Documents\\GitHub\\FA2\\.stack-work\\install\\71ff1820\\lib\\x86_64-windows-ghc-9.2.8\\assignment2-0.1.0.0-E1ZqkG4IEKIFvqLfR4DPsI-batch"
+dynlibdir  = "E:\\System Folders\\Documents\\GitHub\\FA2\\.stack-work\\install\\71ff1820\\lib\\x86_64-windows-ghc-9.2.8"
+datadir    = "E:\\System Folders\\Documents\\GitHub\\FA2\\.stack-work\\install\\71ff1820\\share\\x86_64-windows-ghc-9.2.8\\assignment2-0.1.0.0"
+libexecdir = "E:\\System Folders\\Documents\\GitHub\\FA2\\.stack-work\\install\\71ff1820\\libexec\\x86_64-windows-ghc-9.2.8\\assignment2-0.1.0.0"
+sysconfdir = "E:\\System Folders\\Documents\\GitHub\\FA2\\.stack-work\\install\\71ff1820\\etc"
 
 getBinDir     = catchIO (getEnv "assignment2_bindir")     (\_ -> return bindir)
 getLibDir     = catchIO (getEnv "assignment2_libdir")     (\_ -> return libdir)

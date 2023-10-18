@@ -43,7 +43,7 @@ getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: 
 
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 bindir     = "E:\\System Folders\\Documents\\GitHub\\FA2\\.stack-work\\install\\71ff1820\\bin"
-libdir     = "E:\\System Folders\\Documents\\GitHub\\FA2\\.stack-work\\install\\71ff1820\\lib\\x86_64-windows-ghc-9.2.8\\assignment2-0.1.0.0-9xS1klwTOInFjNN6j6ualy"
+libdir     = "E:\\System Folders\\Documents\\GitHub\\FA2\\.stack-work\\install\\71ff1820\\lib\\x86_64-windows-ghc-9.2.8\\assignment2-0.1.0.0-9EhbX9MqsicKxpE1yYTLIJ"
 dynlibdir  = "E:\\System Folders\\Documents\\GitHub\\FA2\\.stack-work\\install\\71ff1820\\lib\\x86_64-windows-ghc-9.2.8"
 datadir    = "E:\\System Folders\\Documents\\GitHub\\FA2\\.stack-work\\install\\71ff1820\\share\\x86_64-windows-ghc-9.2.8\\assignment2-0.1.0.0"
 libexecdir = "E:\\System Folders\\Documents\\GitHub\\FA2\\.stack-work\\install\\71ff1820\\libexec\\x86_64-windows-ghc-9.2.8\\assignment2-0.1.0.0"

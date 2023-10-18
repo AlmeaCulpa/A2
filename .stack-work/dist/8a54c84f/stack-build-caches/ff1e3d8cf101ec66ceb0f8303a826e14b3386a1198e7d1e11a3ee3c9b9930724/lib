@@ -1,24 +1,24 @@
 C:\Users\Mason\AppData\Local\Programs\stack\x86_64-windows\ghc-9.2.8\lib\x86_64-windows-ghc-9.2.8\rts-1.0.2\include\ghcversion.h:
   hash: f6c07f732dccc8af2172de0e281a32368312f72a92fc29aece1d635417c6c496
-E:\System Folders\Desktop\2023Assignment2\.stack-work\dist\8a54c84f\build\autogen\Paths_assignment2.hs:
-  hash: 6491b20682abdb0f644398ca09723ffba95ba26cd850a0cbc9029e976255d5c4
-E:\System Folders\Desktop\2023Assignment2\.stack-work\dist\8a54c84f\build\autogen\cabal_macros.h:
+E:\System Folders\Documents\GitHub\FA2\.stack-work\dist\8a54c84f\build\autogen\Paths_assignment2.hs:
+  hash: 056f680bc097b5913385eff532a5b7d282694b52866b04d56d131f5e1f37815e
+E:\System Folders\Documents\GitHub\FA2\.stack-work\dist\8a54c84f\build\autogen\cabal_macros.h:
   hash: d3f7d4b4c7df5c4707a9332b8a867b37b40b10c25f50be62c7a25ed02a7476ab
-E:\System Folders\Desktop\2023Assignment2\README.md:
+E:\System Folders\Documents\GitHub\FA2\README.md:
   hash: bec9e398d9f254e3718fdc58ecb3c185697468d9d48988f11a5a377663f8b77a
-E:\System Folders\Desktop\2023Assignment2\assignment2.cabal:
+E:\System Folders\Documents\GitHub\FA2\assignment2.cabal:
   hash: a63a17b753188a59555ebbe755397594af67ab3b2b380f039bf9e6f57793b11b
-E:\System Folders\Desktop\2023Assignment2\package.yaml:
+E:\System Folders\Documents\GitHub\FA2\package.yaml:
   hash: 7fa7c35922ef356e9699d8dba29da584809a7f372d76864a0c59f26254d4d688
-E:\System Folders\Desktop\2023Assignment2\src\Assignment.hs:
-  hash: 5a362589af08a10f5386991b53e7d67ae7cf8daec6c1395142ef3a1640e16e78
-E:\System Folders\Desktop\2023Assignment2\src\BeforeCBRework.hs:
+E:\System Folders\Documents\GitHub\FA2\src\Assignment.hs:
+  hash: d475cec4f547ac10b00c73bcb06c8248bdf3534ba314f2e38e5523860ce556df
+E:\System Folders\Documents\GitHub\FA2\src\BeforeCBRework.hs:
   hash: a50f0c47d407556ee7412556696f9bf3535417658fd4bc66b5f10b56aa094592
-E:\System Folders\Desktop\2023Assignment2\src\Helpers.hs:
+E:\System Folders\Documents\GitHub\FA2\src\Helpers.hs:
   hash: a42b90997d2151c7bb628a48ff55c3bf18726213b8d5e73046f877365dc91f38
-E:\System Folders\Desktop\2023Assignment2\src\Instances.hs:
+E:\System Folders\Documents\GitHub\FA2\src\Instances.hs:
   hash: 9395edc5ae1570ac83cab01fd4e9057ab3498d4a61b8e95ef462e8fcb00f7777
-E:\System Folders\Desktop\2023Assignment2\src\Parser.hs:
+E:\System Folders\Documents\GitHub\FA2\src\Parser.hs:
   hash: 2c3d503d94304d0f6f101d8dc3240af2a25b025abf4ed7570431a97036dabe40
-E:\System Folders\Desktop\2023Assignment2\stack.yaml:
+E:\System Folders\Documents\GitHub\FA2\stack.yaml:
   hash: f3de70d3ef80ffc8352ce0f021c3d05ea5e3c5d4de088d87b5a22a70282c8099

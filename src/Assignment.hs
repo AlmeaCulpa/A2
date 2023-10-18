@@ -13,8 +13,9 @@ import Parser
 import Helpers
 import GHC.Base
 import Data.Foldable (asum)
-import Data.List (intercalate)
+import Data.List (intercalate, isInfixOf)
 import Debug.Trace (trace, traceShow)
+import Control.Monad (guard)
 
 data ADT = Expression Expr | Statement [Stat]
   deriving Show
@@ -60,7 +61,9 @@ data Stat
   | JSStatCall String [Expr]
   | JSFunctionDef String [Expr] Stat
   | JSReturn Expr
-  | JSTailRecursiveFunction String [Expr] Stat
+  | JSTailRecursive String [Expr] Stat
+  | JSRecursiveReturn Expr
+  | JSRecursiveCodeBlock [Stat] Stat
   deriving (Show)
 
 parseExpression :: Parser ADT
@@ -130,12 +133,12 @@ jsNot = JSNot <$ stringTok "!"
 
 jsBinary :: Parser Expr
 jsBinary = do
-  e1 <- asum [jsExprCall, jsExpr]
+  e1 <- jsExpr
   spaces
   op <- asum [jsPlus, jsMinus, jsTimes, jsDivide, jsPower, 
     jsAnd, jsOr, jsEqual, jsNotEqual, jsLessThan, jsGreaterThan]
   spaces
-  e2 <- asum [jsExprCall, jsExpr]
+  e2 <- jsExpr
   pure $ JSBinary op e1 e2
 
 jsPlus :: Parser Op
@@ -190,7 +193,7 @@ multiLineCheck :: String -> Bool
 multiLineCheck = liftA2 (||) lengthCheck newlineCheck
 
 jsExpr :: Parser Expr
-jsExpr = spaces *> asum [jsOp, jsRedundantBrackets, jsBase]
+jsExpr = spaces *> asum [jsOp, jsRedundantBrackets, jsExprCall, jsBase]
 
 parseExerciseA :: Parser ADT
 parseExerciseA = Expression <$> jsExpr
@@ -246,7 +249,7 @@ jsConst = do
   stringTok "const "
   name <- spaces *> jsVarName <* spaces
   charTok '='
-  expr <- asum [jsExprCall, jsExpr]
+  expr <- jsExpr
   charTok ';'
   pure $ JSConst name expr
 
@@ -287,6 +290,9 @@ indent str = unlines $ ("  " ++) <$> (lines str)
 
 jsStat :: Parser Stat
 jsStat = spaces *> asum [jsConstBlock, jsCodeBlock, jsIfElse, jsIf, jsStatCall, jsFunction, jsReturn]
+
+jsStatNoFunc :: Parser Stat
+jsStatNoFunc = spaces *> asum [jsConstBlock, jsCodeBlock, jsIfElse, jsIf, jsReturnNoFunc]
 
 parseExerciseB :: Parser ADT
 parseExerciseB = Statement <$> many jsStat
@@ -387,16 +393,66 @@ jsFunction = do
 
 jsReturn :: Parser Stat
 jsReturn = do
-  stringTok "return"
-  expr <- asum [jsExprCall, jsExpr]
+  stringTok "return "
+  expr <- jsExpr
   charTok ';'
   pure $ JSReturn expr
 
+-- >>> parse jsTailRecursive "function factorial(n, acc) {if ( ((n < 0) || (n === 0)) ) {return acc;}return factorial(hale(5,4), (acc * n));}"
+
+
+jsTailRecursive :: Parser Stat
+jsTailRecursive = do
+  stringTok "function "
+  name <- jsVarName
+  charTok '('
+  args <- sepBy (tok jsExpr) (is ',' <* spaces)
+  charTok ')'
+  codeBlock <- jsRecursiveCodeBlock (prettyExpr name) (length args)
+  pure $ JSTailRecursive (prettyExpr name) args codeBlock
+
+jsExprNoFunc :: Parser Expr
+jsExprNoFunc = spaces *> asum [jsOp, jsRedundantBrackets, jsBase]
+
+jsCallNoFunc :: Parser Expr
+jsCallNoFunc = do
+  name <- jsVarName
+  charTok '('
+  args <- sepBy (tok jsExprNoFunc) (is ',' <* spaces)
+  charTok ')'
+  pure $ JSExprCall (prettyExpr name) args
+
+jsReturnNoFunc :: Parser Stat
+jsReturnNoFunc = do
+  stringTok "return "
+  expr <- jsExprNoFunc
+  charTok ';'
+  pure $ JSReturn expr
+
+jsRecursiveReturn :: String -> Int -> Parser Stat
+jsRecursiveReturn outerName argNum = do
+  stringTok "return "
+  expr <- jsCallNoFunc
+  charTok ';'
+  case expr of
+    JSExprCall name args 
+      | name == outerName && argNum == length args -> 
+        pure $ JSRecursiveReturn expr
+    _ -> error "Not recursive"
+
+jsRecursiveCodeBlock :: String -> Int -> Parser Stat
+jsRecursiveCodeBlock outerName argNum = do
+  charTok '{'
+  stats <- many jsStatNoFunc
+  return <- jsRecursiveReturn outerName argNum
+  charTok '}'
+  pure $ JSRecursiveCodeBlock stats return
+
 isTailRecursive :: String -> Bool
 isTailRecursive input = 
-  case parse parseFull input of
-    Error _ -> False
+  case parse jsTailRecursive input of
     Result _ _ -> True
+    Error _ -> False
 
 parseExerciseC :: Parser ADT
 parseExerciseC = parseFull
